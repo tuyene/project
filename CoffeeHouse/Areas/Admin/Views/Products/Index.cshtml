@@ -1,0 +1,59 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@*
+@model List<Products>
+@foreach(var item in Model)
+{
+    <div class="col-lg-3 products">
+        <div class="item">
+            <div class="item__pic" data-setbg = "@Url.Content("#")" style="background-image:url(&quot;img/item-1.jpg$quot;);">
+                <ul class="item__pic__hover">
+                    <li></li>
+                </ul>
+            </div>
+            <div class="item__text">
+                <h6><a href="#">@item.Name</a></h6>
+                <h5>@item.Price</h5>
+            </div>
+        </div>
+    </div>
+} 
+*@
+@model IEnumerable<Products>
+<div id="content">
+    <h3 style="margin-top: 50px; text-align: center; padding-bottom: 50px">Products List</h3>
+    <table class="table table-striped" style="margin: 0 auto; width: 60%">
+        <thead style="background-color: black; color: white">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>IdCategory</th>
+                <th>Price</th>
+                <th>Function</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var s in Model)
+            {
+                <tr>
+                    <td>@s.IdProduct</td>
+                    <td>@s.Name</td>
+                    <td>@s.IdCategory</td>
+                    <td>@s.Price</td>
+                    <td>
+                        <a style="background-color: green; text-decoration: none; color: white; padding: 5px 10px" asp-action="Edit" asp-route-id="@s.IdProduct">Edit</a>
+                        <a style="background-color: red; text-decoration: none; color: white; padding: 5px 10px" asp-action="Delete" asp-route-id="@s.IdProduct">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <a asp-action="Create" class="btn btn-primary" style="margin-top: 20px; padding: 10px; margin-left: 250px">Create New Product</a>
+</div>
